@@ -72,7 +72,7 @@ In the existing solution of GuidedTours.com app, implement route guards to ensur
                 }      
             }
         ```
-    7. In the template of `Login` component 
+    6. In the template of `Login` component 
         - add an input field to accept tour-guide code and a button which calls the `validateTourGuideCode()` method when clicked. (User Angular Material components for designing `login` view)
         - add link to allow visitors to route to `home` view and view the available tours.
         ```html
@@ -91,7 +91,7 @@ In the existing solution of GuidedTours.com app, implement route guards to ensur
                 <h3><a routerLink="">Click here if you are a Visitor</a></h3>
             </div>
         ```
-        - add the following style code for `Login` component
+    7. Add the following style code for `Login` component
         ```css
             #login-form {
                 max-width: 400px;
