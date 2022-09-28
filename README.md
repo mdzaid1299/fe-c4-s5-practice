@@ -20,10 +20,9 @@ In the existing solution of GuidedTours.com app, implement route guards to ensur
 
 #### About the boilerplate
 
-- The boilerplate code contains folder `source-code` which contains component and service code files.
-    - The code files will need to be copied to the `app` folder after the app is created.
+- The boilerplate code contains route-enabled solution for `GuidedTours.com` app.
+    - The components in the app are styled using Angular Material components and themes.
 - The boilerplate code also contains folder `images` which contains image files required by this app.
-    - The image files need to be copied to the `assets` folder located inside the `src` folder of the newly created app.
 
 #### Task # 1 – Add `auth` Service
 
