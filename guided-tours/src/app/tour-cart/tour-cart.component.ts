@@ -17,6 +17,7 @@ export class TourCartComponent implements OnInit {
   tour?: Tour;
   stars: Array<number> = [];
   tourRequest: TourRequest = {};
+  submitStatus:boolean = false;
 
   constructor(private activatedRoute: ActivatedRoute,
     private tourService: TourService,
@@ -27,23 +28,33 @@ export class TourCartComponent implements OnInit {
   
   ngOnInit(): void {
     this.activatedRoute.paramMap.subscribe(param => {
-      let id = param.get("id") ?? "";
-      this.tourService.getTour(id).subscribe(data => {
-        this.tour = data;
-        this.stars = new Array(this.tour.rating);
-      })
+        let id = param.get("id") ?? "";
+        this.tourService.getTour(id).subscribe(data => {
+            this.tour = data;
+            this.stars = new Array(this.tour.rating);
+            this.submitStatus = false;
+        })
     })
-  }
+}
 
-  makeRequest() {
-    if (this.tourRequest.customerName && this.tourRequest.customerEmail && this.tourRequest.customerPhone && this.tourRequest.dateOfTravel) {
-      this.tourRequestService.saveTourRequest(this.tourRequest).subscribe(data => {
-        this.snackBar.open("Request Submitted", "", {
-          duration: 3000
-        });
-        this.routeService.navigateToHomeView();
-      })
-    }
+
+makeRequest() {
+  if (this.tourRequest.customerName && this.tourRequest.customerEmail && this.tourRequest.customerPhone && this.tourRequest.dateOfTravel) {
+  this.tourRequestService.saveTourRequest(this.tourRequest).subscribe(data => {
+      this.snackBar.open("Request Submitted", "", {
+      duration: 3000
+      });
+      this.submitStatus = true;
+      this.routeService.navigateToHomeView();
+  })
   }
+}
+
+  canDeactivate() {
+    if (!this.submitStatus)
+        this.submitStatus = confirm("You have not made a request to this tour, Are you sure you want to leave?");
+    return this.submitStatus;
+ }
+
 
 }
